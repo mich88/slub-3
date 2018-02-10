@@ -1,0 +1,665 @@
+// IMPORTS
+@import "../vendor/reset-css/reset.scss";
+@import "../vendor/normalize-scss/normalize.scss";
+
+@import "./mixins.scss";
+
+@import "../vendor/susy/sass/susy.scss";
+
+// SUSY
+$susy-large: (
+	container: 960px,
+	columns: 12,
+	global-box-sizing: border-box
+);
+
+$susy-counter: (
+	math: static,
+	container: 554px,
+	columns: 4,
+	gutters: 30/116,
+	column-width: 116px
+);
+
+$susy-album: (
+	container: 960px,
+	gutters: 1
+);
+
+$susy-tags: (
+	container: 960px,
+	gutters: 1
+);
+
+$susy-food: (
+	container: 360px,
+	gutters: 0
+);
+
+$susy-info: (
+	container: 800px,
+	gutters: 12
+);
+
+$susy-footer: (
+	container: 100%
+);
+
+// GENERAL STYLES
+body {
+	@include font-l(20, 400, 666);
+	line-height: 1.2;
+	min-width: 1024px;
+}
+
+.italic {
+	font-style: italic;
+}
+
+.bold {
+	font-weight: 700;
+}
+
+.title {
+	@include font-gv(60, 400, 666);
+	text-align: center;
+}
+
+.px-wrap {
+	overflow: hidden;
+
+	.bg {
+		position: relative;
+	}
+}
+
+img {
+	width: 100%;
+}
+
+.link {
+	position: relative;
+	font-size: 14px;
+	color: #fa7d8e;
+	text-decoration: none;
+
+	&:before {
+		content: " ";
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		display: block;
+		width: 0%;
+		height: 1px;
+		background-color: #fa7d8e;
+		transition: width 0.3s;
+	}
+
+	&:hover {
+
+		&:before {
+			width: 100%;
+		}
+	}
+
+	&_regular {
+		font-size: inherit;
+	}
+}
+
+section {
+	padding-bottom: 80px;
+}
+
+p {
+	margin-bottom: 24px;
+}
+
+.align {
+
+	&_c {
+		text-align: center;	
+	}
+
+	&_r {
+		text-align: right;
+	}
+
+}
+
+// SVG
+.icon {
+  	display: inline-block;
+  	width: 1em;
+  	height: 1em;
+  	stroke-width: 0;
+  	stroke: currentColor;
+  	fill: currentColor;
+}
+.icon-AlicjaMichal {
+  	font-size: 200px;
+  	color: #fff;
+}
+.icon-envelope {
+	display: block;
+	margin: 0 auto 20px;
+	font-size: 32px;
+	color: #666;
+}
+.icon-flowers {
+	display: block;
+	margin: 0 auto;
+	font-size: 150px;
+	color: #fa7d8e;
+}
+.icon-flowers-r {
+	font-size: 90px;
+	color: #fff;
+	vertical-align: middle;
+}
+.icon-flowers-l {
+	font-size: 90px;
+	color: #fff;
+	vertical-align: middle;
+}
+.icon-bands {
+	display: block;
+	margin: 0 auto;
+	font-size: 100px;
+	color: #fff;
+}
+.icon-cat {
+	font-size: 50px;
+	color: #666;
+}
+
+.icon-dog {
+	font-size: 50px;
+	color: #666;
+}
+
+// LAYOUT LARGE
+@include layout($susy-large);
+
+.wrap {
+	@include container;
+}
+
+// HEADER
+header {
+	position: relative; 
+	padding-top: 500px;
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/banner-2-1200.jpg') 63% 30% no-repeat;
+	background-size: 150%;
+}
+
+nav {
+	position: absolute;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding-top: 20px;
+	transition: top 0.3s 0.3s, background-color 0.3s 0s;
+
+	&.sticky {
+		position: fixed;
+		top: -220px;
+		background-color: #fff;
+		transition: top 0.3s 0s, background-color 0.3s 0.3s;
+
+		&.show {
+			top: -20px;
+		}
+
+		.nav {
+
+			&__item {
+				height: 120px
+			}
+
+			&__link {
+				line-height: 120px;
+				color: #fa7d8e;
+
+				&.logo {
+
+					.icon-AlicjaMichal {
+						margin-top: 10px;
+						font-size: 100px;
+						color: #fa7d8e;
+					}
+				}
+			}
+		}
+	}
+
+	.nav {
+
+		&__list {
+			margin-left: -8px;
+			text-align: center;
+		}
+
+		&__item {
+			display: inline-block;
+			margin: 0 20px;
+			height: 200px;
+			vertical-align: middle;
+			overflow: hidden;
+			transition: all 0.3s 0.3s;
+
+		}
+
+		&__link {
+			position: relative;
+			text-decoration: none;
+			font-size: 14px;
+			line-height: 200px;
+			color: #fff;
+			transition: all 0.3s 0.3s;
+
+			&:before {
+				content: " ";
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				display: block;
+				width: 0%;
+				height: 1px;
+				background-color: #fa7d8e;
+				transition: width 0.3s;
+			}
+
+			&:hover {
+
+				&:before {
+					width: 100%;
+				}
+			}
+
+			&.logo {
+				position: relative;
+				display: block;
+
+				&:before {
+					display: block;
+					top: 0;
+					right: 0;
+					width: 100%;
+					height: 100%;
+					background-color: transparent;
+					transition: none;
+				}
+
+				.icon-AlicjaMichal {
+					transition: all 0.3s 0.3s;
+
+				}
+			}
+		}
+	}
+}
+
+// HERO
+@include with-layout($susy-counter) {
+	.hero {
+		@include container;
+
+		//position: absolute;
+		margin: 0 auto;
+		padding: 0;
+
+		&__txt {
+			margin-bottom: 10px;
+			font-size: 18px;
+			color: #fff;
+			text-align: center;
+
+
+			&_big {
+				padding-bottom: 30px;
+				font-size: 22px;
+				color: #fff;
+				text-align: center;
+				
+				span {
+					display: inline-block;
+					margin: 0 15px;
+					vertical-align: middle;
+				}
+			}
+		}
+	}
+
+	// COUNTER
+	.counter {
+		@include cf;
+
+		margin-bottom: 22px;
+
+		&__new {
+
+			.counter__num {
+				color: #fa7d8e;
+			}
+		}
+
+		&__item {
+			@include gallery(1 of 4);
+
+			padding-top: 10px;
+			padding-bottom: 15px;
+			border: 1px solid #fff;
+			background-color: rgba(0, 0, 0, 0.5);
+			text-align: center;
+		}
+
+		&__num {
+			margin-bottom: 0;
+			opacity: 0;
+			@include font-gv(60, 400, fff);
+
+			animation-name: show-counter;
+		    animation-duration: 0.6s;
+		    animation-delay: 1.3s;
+		    animation-fill-mode: forwards;
+		}
+
+		&__txt {
+			margin-bottom: 0;
+			font-size: 16px;
+			color: #fff;
+		}
+	}
+}
+
+@keyframes show-counter {
+	from { opacity: 0 }
+	to {opacity: 1 }
+}
+
+// FOOTNOTE
+.footnote {
+	position: relative;
+	font-size: 13px;
+	line-height: 50px;
+	color: #fff;
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.5);
+
+	span {
+		display: inline-block;
+		margin-right: 5px;
+	}
+}
+
+// INTRO
+#intro {
+	padding-bottom: 0;
+
+	p {
+		text-align: center;
+	}
+}
+
+// GALLERY
+@include with-layout($susy-album) {
+	
+	.album {
+		@include container;
+
+		margin-top: 64px;
+
+		&__card {
+			@include gallery(3 of 12);
+
+			margin-bottom: 40px;
+			padding: 25px;
+			height: 450px;
+			border: 1px solid rgba(0,0,0, 0.2);
+			transition: box-shadow 0.6s;
+			box-sizing: border-box;
+			
+			&:hover {
+				box-shadow: 0px 0px 50px -5px #fa7d8e;
+			}
+
+		}
+
+		&__photo {
+			padding: 5px;
+			width: 100%;
+			border: 2px solid #000;
+			box-sizing: border-box;
+			
+		}
+
+		&__title {
+			height: 82px;
+			padding-bottom: 10px;
+			color: #000;
+
+			& p {
+				margin: 0;
+			}
+		}
+
+		&__txt {
+			padding-top: 20px;
+			margin-bottom: 10px;
+			border-top: 1px solid rgba(0,0,0, 0.2);
+		}
+
+		&__links {
+			display: flex;
+		    justify-content: space-between;
+		    padding-bottom: 30px;
+
+		}
+
+		&__link {
+
+		}
+	}
+}
+
+// GIFTS
+#gifts {
+	
+	.num {
+		font-size: 2em;
+		color: #fa7d8e;
+	}
+}
+
+.food_sum {
+	margin-bottom: 64px;
+
+	p {
+		margin-bottom: 0;
+
+		&:nth-child(2) {
+			padding-top: 18px;
+		}
+	}
+}
+
+@include with-layout($susy-food) {
+
+	.food {
+		@include container;
+
+		margin-top: 64px;
+		margin-bottom: 64px;
+
+		&__box {
+			@include gallery(6 of 12);
+
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: 10px;
+
+			height: 120px;
+			box-sizing: border-box;
+
+			&:nth-child(2n+1) {
+				border-right: 1px solid rgba(0,0,0, 0.2);
+			}
+
+			p {
+				margin-bottom: 0;
+			}
+		}
+
+		&__icon {
+			position: absolute;
+			top: 105px;
+
+			&_dog {
+				left: -100px;
+			}
+
+			&_cat {
+				right: -100px;
+			}
+		}
+	}
+}
+
+// TAGS
+@include with-layout($susy-tags) {
+	
+	.tags {
+		@include container;
+
+		margin-top: 64px;
+
+		&__card {
+			@include gallery(4 of 12);
+
+			position: relative;
+			margin-bottom: 40px;
+
+			&:hover {
+
+				& .tags__photo_f {
+				    transform: rotateY(180deg);	
+				}
+
+
+				& .tags__photo_b {
+				    transform: rotateY(0deg);	
+				}
+			}
+		}
+
+		&__photo {
+			transform-style: preserve-3d;
+			transition: transform 0.6s cubic-bezier(0, 0, 0.2, 1);
+			backface-visibility: hidden;
+
+			&_b {
+				position: absolute;
+				top: 0;
+				left: 0;
+			    transform: rotateY(180deg);
+			}
+			
+		}
+	}
+}
+
+// CONTACT
+@include with-layout($susy-info) {
+
+	.info {
+		@include container;
+
+		margin-top: 64px;
+		margin-bottom: 80px;
+
+		&_contact {
+			margin-top: 80px;
+			margin-bottom: 0;
+		}
+
+		&__row {
+			@include span(12 of 12 last);
+		}
+
+		&__box {
+			@include gallery(6 of 12);
+
+			position: relative;
+
+			&_contact {
+				text-align: center;
+			}
+
+			&_full {
+				@include gallery(12 of 12);
+			}
+		}
+
+		&__img {
+			margin-bottom: 20px;
+		}
+
+		&__txt {
+			margin-bottom: 20px;
+			font-size: 20px;
+			text-align: center;
+		}
+
+		&__link {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+
+			&_contact {
+				display: inline-block;
+				font-size: 20px;
+			}
+		}
+	}
+}
+
+// FOOTER 
+@include with-layout($susy-footer) {
+
+	footer {
+		@include container;
+
+		padding: 15px 20px 10px;
+		background-color: #666;
+	}
+
+	.footer {
+
+		&__box {
+			@include gallery(4 of 12);
+		}
+
+		&__txt {
+			// position: absolute;
+			display: block;
+			margin-top: 10px;
+			margin-bottom: 0;
+			font-size: 14px;
+			color: #fff;
+		}
+
+		&__link {
+			color: #fff;
+		}
+
+		&__icon {
+			height: 34px;
+			font-size: 120px;
+			color: #fff;
+		}
+	}
+}
